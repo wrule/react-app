@@ -9,7 +9,10 @@ function App() {
   return (
     <div className="App">
       <span>{str.slice(0, 3)}</span>
-      <XAvatar />
+      <XAvatar
+        name="中本"
+        size={64}
+      />
     </div>
   );
 }
