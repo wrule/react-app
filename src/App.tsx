@@ -50,6 +50,9 @@ export default () => {
           </Breadcrumb>
           <div>
             <Switch>
+              <Route exact path="/">
+                <ViewIndex />
+              </Route>
               <Route path="/btc">
                 <ViewBTC />
               </Route>
@@ -64,9 +67,6 @@ export default () => {
               </Route>
               <Route path="/ada">
                 <ViewADA />
-              </Route>
-              <Route path="/">
-                <ViewIndex />
               </Route>
             </Switch>
           </div>
