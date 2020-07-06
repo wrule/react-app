@@ -2,6 +2,8 @@ import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import XAvatar from './components/avatar';
+import 'antd/dist/antd.css';
+import { DatePicker, Button } from 'antd';
 
 function App() {
   const str: string = '你好,世界';
@@ -26,6 +28,8 @@ function App() {
         img="/v.jpeg"
         size={100}
       />
+      <DatePicker size="small" />
+      <Button size="small" type="primary">主要按钮</Button>
     </div>
   );
 }
