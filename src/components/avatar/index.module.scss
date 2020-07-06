@@ -3,16 +3,16 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.3);
   user-select: none;
   overflow: hidden;
-  background: url('/logo192.png');
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
   span {
     color: white;
     font-size: 0.3em;
     line-height: 0.3em;
     white-space: nowrap;
+  }
+  .hidspan {
+    visibility: hidden;
   }
 }

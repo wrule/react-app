@@ -1,51 +1,58 @@
 import React from 'react';
 import style from './index.module.scss';
 import hash from './hash';
+import colors from './colors';
 
 interface Props {
   size?: number;
-  img?: string;
   name?: string;
+  img?: string;
 }
 
-const colors = [
-  '#6acfb2',
-  '#f39f7a',
-  '#e07583',
-  '#9f94e3',
-  '#6ea4ef',
-  '#f3aa2a',
-  '#2c9cb4',
-  '#c77a88',
-  '#2e6bc0',
-  '#995edc',
-  '#70c4d6',
-  '#d6629b',
-  '#58b670',
-  '#b17d5a',
-  '#dab33e',
-  '#849bc2',
-  '#93ac68',
-  '#896089',
-  '#71a69e',
-  '#3a8f8e',
-];
-
 export default class XAvatar extends React.Component<Props, {}> {
+  /**
+   * Hash计算得出的背景颜色
+   */
   private get autoBackgroundColor() {
     const index = hash(this.props.name || '') % colors.length;
     return colors[index];
   }
 
-  private get autoStyle() {
+  /**
+   * 判断是否为图像图像模式
+   */
+  private get autoIsImg() {
+    return !!this.props.img;
+  }
+
+  /**
+   * 基础样式
+   */
+  private get autoBaseStyle() {
     return {
-      // backgroundColor: this.autoBackgroundColor,
       width: `${this.props.size}px`,
       height: `${this.props.size}px`,
       borderRadius: `${this.props.size}px`,
-      fontSize: `${this.props.size}px`,
       border: `solid ${(this.props.size || 0) / 20}px white`,
     };
+  }
+
+  private get autoStyle() {
+    if (this.autoIsImg) {
+      return {
+        ...this.autoBaseStyle,
+        background: `url(${this.props.img})`,
+        backgroundSize: `100% 100%`,
+        backgroundRepeat: `no-repeat`,
+        fontSize: `${this.props.size}px`,
+      };
+    } else {
+      return {
+        ...this.autoBaseStyle,
+        backgroundColor: this.autoBackgroundColor,
+        fontSize: `${this.props.size}px`,
+      };
+    }
   }
 
   public render() {
@@ -53,7 +60,9 @@ export default class XAvatar extends React.Component<Props, {}> {
       <div
         className={style.com}
         style={this.autoStyle}>
-        {/* <span>{this.props.name}</span> */}
+        {this.autoIsImg ?
+          <span className={style.hidspan}>{this.props.name}</span> :
+          <span>{this.props.name}</span>}
       </div>
     );
   }
