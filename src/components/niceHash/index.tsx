@@ -2,13 +2,14 @@ import React from 'react';
 import style from './index.module.scss';
 import { Tooltip, message } from 'antd';
 import { CopyOutlined } from '@ant-design/icons';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 interface IProps {
   hash: string,
 }
 
 export default (props: IProps) => {
-  function handleCopyClick() {
+  function handleCopy() {
     message.info('Hash已复制到剪切板');
   }
 
@@ -21,10 +22,11 @@ export default (props: IProps) => {
     <Tooltip
       placement="bottom"
       title="复制">
-      <CopyOutlined
-        className={style.copy}
-        onClick={handleCopyClick}
-      />
+      <CopyToClipboard
+        text={props.hash}
+        onCopy={handleCopy}>
+        <CopyOutlined className={style.copy} />
+      </CopyToClipboard>
     </Tooltip>
   </span>;
 }
